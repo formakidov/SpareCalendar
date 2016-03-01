@@ -1,0 +1,65 @@
+#
+# generated on 2016/03/02 02:32:05
+#
+# --table-start--
+dataClass=com.formakidov.sparecalendar.model.Car
+tableName=cars
+# --table-fields-start--
+# --field-start--
+fieldName=name
+columnName=name
+# --field-end--
+# --field-start--
+fieldName=comment
+columnName=comment
+# --field-end--
+# --field-start--
+fieldName=distance
+columnName=distance
+# --field-end--
+# --field-start--
+fieldName=lastUpdate
+columnName=last_update
+# --field-end--
+# --field-start--
+fieldName=consumables
+foreignCollection=true
+# --field-end--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.formakidov.sparecalendar.model.Consumable
+tableName=consumables
+# --table-fields-start--
+# --field-start--
+fieldName=car
+columnName=car_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=name
+columnName=name
+# --field-end--
+# --field-start--
+fieldName=comment
+columnName=comment
+# --field-end--
+# --field-start--
+fieldName=distance
+columnName=distance
+defaultValue=0
+canBeNull=false
+# --field-end--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
