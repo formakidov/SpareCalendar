@@ -5,6 +5,6 @@ import com.formakidov.sparecalendar.fragment.BaseFragment;
 public interface IMainView {
     void hideFab();
     void showFab();
-    void changeFragment(BaseFragment f);
+    void setFragment(BaseFragment f);
     void finish();
 }

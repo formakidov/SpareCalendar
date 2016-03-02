@@ -3,6 +3,7 @@ package com.formakidov.sparecalendar.presenter;
 import com.formakidov.sparecalendar.Application;
 import com.formakidov.sparecalendar.db.repository.CarsRepository;
 import com.formakidov.sparecalendar.model.Car;
+import com.formakidov.sparecalendar.tools.Tools;
 import com.formakidov.sparecalendar.view.ICarView;
 
 import java.sql.SQLException;
@@ -39,7 +40,12 @@ public class CarsPresenterImpl implements ICarsPresenter {
     }
 
     @Override
-    public void updateCars() {
+    public void onResume() {
+        updateCars();
+        Tools.cancelNotification();
+    }
+
+    private void updateCars() {
         try {
             CarsRepository repo = new CarsRepository(Application.getContext());
             List<Car> cars = repo.queryAll();

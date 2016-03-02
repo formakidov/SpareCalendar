@@ -15,38 +15,12 @@ public class MainPresenterImpl implements IMainPresenter {
 
     public MainPresenterImpl(IMainView view) {
         this.view = view;
-
-
     }
 
     @Override
     public void onBackPressed(BaseFragment curFrag) {
-        int fragId;
-        if (curFrag instanceof CarsFragment) {
-            fragId = ManagerFragmentId.carsFragmentId();
-        } else {
-            if (curFrag instanceof ReferenceBookFragment) {
-                fragId = ManagerFragmentId.carsFragmentId();
-            } else if (curFrag instanceof SettingsFragment) {
-                fragId = ManagerFragmentId.carsFragmentId();
-            } else {
-                view.finish();
-                return;
-            }
-        }
-        BaseFragment prevFrag = getFragmentById(fragId);
-        if (prevFrag != null) {
-            // TODO: 01.03.2016 check fab
-            view.changeFragment(prevFrag);
-            if (prevFrag instanceof IHasFabFragment) {
-                view.showFab();
-            } else {
-                view.hideFab();
-            }
-        } else {
-            view.finish();
-        }
-        currentFragmentId = fragId;
+        view.finish();
+        // TODO: 02.03.2016
     }
 
     @Override
@@ -69,7 +43,12 @@ public class MainPresenterImpl implements IMainPresenter {
                 break;
         }
         if (f != null) {
-            view.changeFragment(f);
+            view.setFragment(f);
+            if (f instanceof IHasFabFragment) {
+                view.showFab();
+            } else {
+                view.hideFab();
+            }
         }
     }
 

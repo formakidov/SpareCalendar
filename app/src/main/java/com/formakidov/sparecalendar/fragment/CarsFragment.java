@@ -56,7 +56,7 @@ public class CarsFragment extends BaseFragment implements ICarView, IHasFabFragm
     @Override
     public void onResume() {
         super.onResume();
-        presenter.updateCars();
+        presenter.onResume();
     }
 
 	@Override

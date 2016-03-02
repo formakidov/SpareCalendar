@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity implements IMainView, NavigationV
 
         presenter = new MainPresenterImpl(this);
 
-		changeFragment(CarsFragment.newInstance());
+		setFragment(CarsFragment.newInstance());
 	}
 
     public void setupViews() {
@@ -89,7 +89,7 @@ public class MainActivity extends BaseActivity implements IMainView, NavigationV
     }
 
     @Override
-    public void changeFragment(BaseFragment f) {
+    public void setFragment(BaseFragment f) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, f, f.getClass().getSimpleName())
                 .addToBackStack(f.getClass().getSimpleName())
