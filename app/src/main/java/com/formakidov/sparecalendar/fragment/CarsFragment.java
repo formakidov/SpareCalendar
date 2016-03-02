@@ -59,8 +59,9 @@ public class CarsFragment extends BaseFragment implements ICarView, IHasFabFragm
         presenter.updateCars();
     }
 
-    public void setupViews(View v) {
-        adapter = new CarsAdapter();
+	@Override
+	protected void setupViews(View v) {
+		adapter = new CarsAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());

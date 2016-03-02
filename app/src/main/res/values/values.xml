@@ -1,0 +1,19 @@
+<resources>
+
+	<item type="id" name="drawer_layout"/>
+
+	<item type="id" name="coordinator_layout"/>
+
+	<item type="id" name="fab"/>
+
+	<item type="id" name="recycler_view"/>
+
+	<item type="id" name="item_icon"/>
+	<item type="id" name="item_checker"/>
+	<item type="id" name="item_name"/>
+	<item type="id" name="item_comment"/>
+	<item type="id" name="item_context"/>
+
+	<item type="id" name="shadow_reverse"/>
+
+</resources>

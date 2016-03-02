@@ -25,7 +25,8 @@ public class ReferenceBookFragment extends BaseFragment {
         return v;
     }
 
-    private void setupViews(View v) {
+	@Override
+	protected void setupViews(View v) {
 
     }
 }

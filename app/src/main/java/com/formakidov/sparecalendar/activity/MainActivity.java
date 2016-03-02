@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 import com.formakidov.sparecalendar.R;
 import com.formakidov.sparecalendar.fragment.BaseFragment;
-import com.formakidov.sparecalendar.fragment.ReferenceBookFragment;
+import com.formakidov.sparecalendar.fragment.CarsFragment;
 import com.formakidov.sparecalendar.interfaces.IHasFabFragment;
 import com.formakidov.sparecalendar.presenter.MainPresenterImpl;
 import com.formakidov.sparecalendar.view.IMainView;
@@ -40,8 +40,8 @@ public class MainActivity extends BaseActivity implements IMainView, NavigationV
 
         presenter = new MainPresenterImpl(this);
 
-        changeFragment(ReferenceBookFragment.newInstance());
-    }
+		changeFragment(CarsFragment.newInstance());
+	}
 
     public void setupViews() {
         setSupportActionBar(toolbar);

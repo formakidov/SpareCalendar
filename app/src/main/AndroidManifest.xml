@@ -10,9 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+			android:name=".activity.MainActivity"
+			android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,13 +19,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ConsumablesActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+			android:name=".activity.ConsumablesActivity"
+			android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.ConsumableDetails"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+			android:name=".activity.ConsumableDetails"
+			android:screenOrientation="portrait"/>
         <service
             android:name=".NotificationService"
             android:enabled="true"
