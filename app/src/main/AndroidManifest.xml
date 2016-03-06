@@ -22,7 +22,7 @@
 			android:name=".activity.ConsumablesActivity"
 			android:screenOrientation="portrait"/>
         <activity
-			android:name=".activity.ConsumableDetails"
+			android:name=".activity.ConsumableDetailsActivity"
 			android:screenOrientation="portrait"/>
         <service
             android:name=".NotificationService"

@@ -12,27 +12,27 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.formakidov.sparecalendar.Application;
 import com.formakidov.sparecalendar.Constants;
 import com.formakidov.sparecalendar.R;
 import com.formakidov.sparecalendar.activity.ConsumablesActivity;
 import com.formakidov.sparecalendar.adapter.CarsAdapter;
+import com.formakidov.sparecalendar.db.repository.CarsRepository;
 import com.formakidov.sparecalendar.dialog.CarDialog;
 import com.formakidov.sparecalendar.interfaces.IHasFabFragment;
 import com.formakidov.sparecalendar.listener.ItemClickSupport;
 import com.formakidov.sparecalendar.model.Car;
-import com.formakidov.sparecalendar.presenter.CarsPresenterImpl;
 import com.formakidov.sparecalendar.tools.Tools;
-import com.formakidov.sparecalendar.view.ICarView;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CarsFragment extends BaseFragment implements ICarView, IHasFabFragment {
+public class CarsFragment extends BaseFragment implements IHasFabFragment {
     @Bind(R.id.recycler_view) RecyclerView recyclerView;
 
-    private CarsPresenterImpl presenter;
     private CarsAdapter adapter;
 
     public CarsFragment() {
@@ -48,15 +48,13 @@ public class CarsFragment extends BaseFragment implements ICarView, IHasFabFragm
         ButterKnife.bind(this, v);
         setupViews(v);
 
-        presenter = new CarsPresenterImpl(this);
-
         return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        presenter.onResume();
+        updateCars();
     }
 
 	@Override
@@ -93,7 +91,7 @@ public class CarsFragment extends BaseFragment implements ICarView, IHasFabFragm
         dialog.show(ft, getString(R.string.add_car));
     }
 
-    public void showEditDialog() {
+    private void showEditDialog() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         Bundle args = new Bundle();
         // TODO: 27.02.2016 put parcelable car in args
@@ -104,7 +102,7 @@ public class CarsFragment extends BaseFragment implements ICarView, IHasFabFragm
 
     private void showDeleteDialog() {
         // TODO: 27.02.2016 are you sure?
-//        presenter.deleteCar();
+//        deleteCar();
     }
 
     private void showMenuDialog() {
@@ -134,8 +132,36 @@ public class CarsFragment extends BaseFragment implements ICarView, IHasFabFragm
         showAddDialog();
     }
 
-    @Override
-    public void setCars(List<Car> cars) {
-        adapter.addAll(cars);
+    private void deleteCar(Car car) {
+        CarsRepository carRepo = new CarsRepository(Application.getContext());
+        try {
+            carRepo.delete(car);
+        } catch (SQLException e) {
+            // TODO: 02.03.2016
+            e.printStackTrace();
+        }
+        updateCars();
     }
+
+    private void editCar(Car car) {
+        try {
+            CarsRepository repo = new CarsRepository(Application.getContext());
+            repo.save(car);
+        } catch (SQLException e) {
+            // TODO: 02.03.2016
+            e.printStackTrace();
+        }
+    }
+
+    private void updateCars() {
+        try {
+            CarsRepository repo = new CarsRepository(Application.getContext());
+            List<Car> cars = repo.queryAll();
+            adapter.addAll(cars);
+        } catch (SQLException e) {
+            // TODO: 27.02.2016
+            e.printStackTrace();
+        }
+    }
+
 }

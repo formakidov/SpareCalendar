@@ -14,21 +14,22 @@ import android.view.MenuItem;
 import com.formakidov.sparecalendar.R;
 import com.formakidov.sparecalendar.fragment.BaseFragment;
 import com.formakidov.sparecalendar.fragment.CarsFragment;
+import com.formakidov.sparecalendar.fragment.ReferenceBookFragment;
+import com.formakidov.sparecalendar.fragment.SettingsFragment;
 import com.formakidov.sparecalendar.interfaces.IHasFabFragment;
-import com.formakidov.sparecalendar.presenter.MainPresenterImpl;
-import com.formakidov.sparecalendar.view.IMainView;
+import com.formakidov.sparecalendar.tools.ManagerFragmentId;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements IMainView, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Bind(R.id.drawer_layout) DrawerLayout drawer;
     @Bind(R.id.nav_view) NavigationView navigationView;
     @Bind(R.id.fab) FloatingActionButton fab;
     @Bind(R.id.toolbar) Toolbar toolbar;
 
-    private MainPresenterImpl presenter;
+    private int currentFragmentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +39,10 @@ public class MainActivity extends BaseActivity implements IMainView, NavigationV
 
         setupViews();
 
-        presenter = new MainPresenterImpl(this);
-
 		setFragment(CarsFragment.newInstance());
 	}
 
-    public void setupViews() {
+    private void setupViews() {
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -66,35 +65,67 @@ public class MainActivity extends BaseActivity implements IMainView, NavigationV
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            BaseFragment curFrag = (BaseFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-            presenter.onBackPressed(curFrag);
+            super.onBackPressed();
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        presenter.onNavigationItemSelected(item.getItemId());
         drawer.closeDrawer(GravityCompat.START);
+        BaseFragment f = null;
+        switch (item.getItemId()) {
+            case R.id.nav_main:
+                if (currentFragmentId != ManagerFragmentId.carsFragmentId()) {
+                    f = CarsFragment.newInstance();
+                }
+                currentFragmentId = ManagerFragmentId.carsFragmentId();
+                break;
+            case R.id.nav_ref_book:
+                f = ReferenceBookFragment.newInstance();
+                currentFragmentId = ManagerFragmentId.referenceBookFragmentId();
+                break;
+            case R.id.nav_settings:
+                f = SettingsFragment.newInstance();
+                currentFragmentId = ManagerFragmentId.settingsFragmentId();
+                break;
+        }
+        if (f != null) {
+            setFragment(f);
+            if (f instanceof IHasFabFragment) {
+                showFab();
+            } else {
+                hideFab();
+            }
+        }
         return true;
     }
 
-    @Override
-    public void hideFab() {
+    private void hideFab() {
         fab.hide();
     }
 
-    @Override
-    public void showFab() {
+    private void showFab() {
         fab.show();
     }
 
-    @Override
-    public void setFragment(BaseFragment f) {
+    private void setFragment(BaseFragment f) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, f, f.getClass().getSimpleName())
                 .addToBackStack(f.getClass().getSimpleName())
                 .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
+    }
+
+    private BaseFragment getFragmentById(int fragmentId) {
+        BaseFragment f = null;
+        if (fragmentId == ManagerFragmentId.carsFragmentId()) {
+            f = CarsFragment.newInstance();
+        } else if (fragmentId == ManagerFragmentId.referenceBookFragmentId()) {
+            f = ReferenceBookFragment.newInstance();
+        } else if (fragmentId == ManagerFragmentId.settingsFragmentId()) {
+            f = SettingsFragment.newInstance();
+        }
+        return f;
     }
 
 }
