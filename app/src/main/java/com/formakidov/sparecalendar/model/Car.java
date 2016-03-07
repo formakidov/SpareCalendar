@@ -13,30 +13,43 @@ import java.util.List;
 @DatabaseTable(tableName = Car.TABLE_NAME)
 public class Car extends BaseModel {
     public static final String TABLE_NAME = "cars";
+
     public static final String FIELD_NAME = "name";
     public static final String FIELD_COMMENT = "comment";
-    public static final String FIELD_DISTANCE = "distance";
-    public static final String FIELD_LAST_UPDATE = "last_update";
+    public static final String FIELD_MILEAGE = "mileage";
+    public static final String FIELD_GEARBOX_TYPE = "gearbox_type";
+    public static final String FIELD_LATEST_UPDATE = "latest_update";
 
-    @DatabaseField(columnName = FIELD_NAME, canBeNull = true)
+    @DatabaseField(columnName = FIELD_NAME)
     private String name;
-    @DatabaseField(columnName = FIELD_COMMENT, canBeNull = true)
+    @DatabaseField(columnName = FIELD_COMMENT)
     private String comment;
-    @DatabaseField(columnName = FIELD_DISTANCE, canBeNull = true)
-    private long distance;
-    @DatabaseField(columnName = FIELD_LAST_UPDATE, canBeNull = true)
-    private long lastUpdate;
+    @DatabaseField(columnName = FIELD_MILEAGE)
+    private long mileage;
+    @DatabaseField(columnName = FIELD_GEARBOX_TYPE)
+    private int gearboxType;
+    @DatabaseField(columnName = FIELD_LATEST_UPDATE)
+    private long latestUpdate;
     @ForeignCollectionField
     private ForeignCollection<Consumable> consumables;
 
     Car() {
     }
 
-    public Car(String name, String comment, long distance, long lastUpdate) {
+    public Car(long id) {
+        this.id = id;
+        name = "";
+        comment = "";
+        mileage = 0;
+        gearboxType = 0;
+    }
+
+    public Car(String name, String comment, long mileage, int gearboxType, long latestUpdate) {
         this.name = name;
         this.comment = comment;
-        this.distance = distance;
-        this.lastUpdate = lastUpdate;
+        this.mileage = mileage;
+        this.gearboxType = gearboxType;
+        this.latestUpdate = latestUpdate;
     }
 
     public String getName() {
@@ -55,20 +68,20 @@ public class Car extends BaseModel {
         this.comment = comment;
     }
 
-    public long getDistance() {
-        return distance;
+    public long getMileage() {
+        return mileage;
     }
 
-    public void setDistance(long distance) {
-        this.distance = distance;
+    public void setMileage(long mileage) {
+        this.mileage = mileage;
     }
 
-    public long getLastUpdate() {
-        return lastUpdate;
+    public long getLatestUpdate() {
+        return latestUpdate;
     }
 
-    public void setLastUpdate(long lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public void setLatestUpdate(long latestUpdate) {
+        this.latestUpdate = latestUpdate;
     }
 
     public List<Consumable> getConsumables() {
@@ -87,5 +100,17 @@ public class Car extends BaseModel {
             }
         }
         return consumables;
+    }
+
+    public int getGearboxType() {
+        return gearboxType;
+    }
+
+    public int getConsumablesCount() {
+        return consumables.size();
+    }
+
+    public void setGearboxType(int gearboxType) {
+        this.gearboxType = gearboxType;
     }
 }

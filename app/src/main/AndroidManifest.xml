@@ -24,6 +24,12 @@
         <activity
 			android:name=".activity.ConsumableDetailsActivity"
 			android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.AddCarActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.AddConsumableActivity"
+            android:screenOrientation="portrait"/>
         <service
             android:name=".NotificationService"
             android:enabled="true"

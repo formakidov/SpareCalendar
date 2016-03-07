@@ -36,11 +36,11 @@ public class CarDialog extends DialogFragment implements Constants {
                 return;
             }
             String comment = etComment.getText().toString().trim();
-            if (isEdit) {
-                mCallback.onCarChanged(new Car(name, comment, 11, System.currentTimeMillis())); // TODO: 02.03.2016
-            } else {
-                mCallback.onCarCreated(new Car(name, comment, 11, System.currentTimeMillis())); // TODO: 02.03.2016
-            }
+//            if (isEdit) {
+//                mCallback.onCarChanged(new Car(name, comment, 11, System.currentTimeMillis())); // TODO: 02.03.2016
+//            } else {
+//                mCallback.onCarCreated(new Car(name, comment, 11, System.currentTimeMillis())); // TODO: 02.03.2016
+//            }
             dialog.dismiss();
         }
 

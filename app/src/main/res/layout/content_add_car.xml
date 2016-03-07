@@ -1,0 +1,71 @@
+<LinearLayout
+    style="@style/LayoutContent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            android:id="@+id/gearbox_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_menu_camera"/>
+
+        <TextView
+            style="@style/ParameterTitle"
+            android:id="@+id/gearbox_type_title"
+            android:layout_toEndOf="@id/gearbox_icon"
+            android:layout_toRightOf="@id/gearbox_icon"
+            android:text="@string/gearbox"/>
+
+        <Spinner
+            android:id="@+id/gearbox_type_spinner"
+            android:layout_below="@id/gearbox_type_title"
+            android:layout_toEndOf="@id/gearbox_icon"
+            android:layout_toRightOf="@id/gearbox_icon"
+            style="@style/Spinner"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            android:id="@+id/comment_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_menu_camera"/>
+
+        <TextView
+            android:id="@+id/comment_title"
+            style="@style/ParameterTitle"
+            android:layout_gravity="center_vertical"
+            android:layout_toEndOf="@id/comment_icon"
+            android:layout_toRightOf="@id/comment_icon"
+            android:singleLine="true"
+            android:text="@string/comment"/>
+
+        <TextView
+            android:id="@+id/comment"
+            style="@style/ParameterValue"
+            android:layout_below="@id/comment_title"
+            android:layout_gravity="center_vertical"
+            android:layout_toEndOf="@id/comment_icon"
+            android:layout_toRightOf="@id/comment_icon"
+            android:singleLine="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

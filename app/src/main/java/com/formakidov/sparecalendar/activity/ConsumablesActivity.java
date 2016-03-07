@@ -61,7 +61,8 @@ public class ConsumablesActivity extends BaseActivity {
         }
     }
 
-    private void setupViews() {
+    @Override
+    protected void setupViews() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

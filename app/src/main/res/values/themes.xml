@@ -1,0 +1,16 @@
+<resources>
+
+    <style name="TitleEditTextTheme">
+        <item name="colorControlNormal">@color/muted</item>
+        <item name="colorControlActivated">@color/muted</item>
+        <item name="colorControlHighlight">@color/muted</item>
+    </style>
+
+    <style name="TitleSpinnerTheme">
+        <item name="colorControlNormal">@color/muted</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+    <style name="CrashDialogTheme" parent="android:Theme.Dialog"/>
+
+</resources>

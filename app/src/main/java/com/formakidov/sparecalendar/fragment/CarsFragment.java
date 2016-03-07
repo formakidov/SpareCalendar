@@ -2,7 +2,6 @@ package com.formakidov.sparecalendar.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,14 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.formakidov.sparecalendar.Application;
 import com.formakidov.sparecalendar.Constants;
 import com.formakidov.sparecalendar.R;
+import com.formakidov.sparecalendar.activity.AddCarActivity;
 import com.formakidov.sparecalendar.activity.ConsumablesActivity;
 import com.formakidov.sparecalendar.adapter.CarsAdapter;
 import com.formakidov.sparecalendar.db.repository.CarsRepository;
-import com.formakidov.sparecalendar.dialog.CarDialog;
 import com.formakidov.sparecalendar.interfaces.IHasFabFragment;
 import com.formakidov.sparecalendar.listener.ItemClickSupport;
 import com.formakidov.sparecalendar.model.Car;
@@ -79,33 +79,30 @@ public class CarsFragment extends BaseFragment implements IHasFabFragment {
         support.setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClicked(RecyclerView recyclerView, final int position, View v) {
-                showMenuDialog();
+                Car car = adapter.getItem(position);
+                showMenuDialog(car);
                 return false;
             }
         });
     }
 
-    private void showAddDialog() {
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        CarDialog dialog = new CarDialog();
-        dialog.show(ft, getString(R.string.add_car));
+    private void showDeleteDialog(final Car car) {
+        new MaterialDialog.Builder(getContext())
+                .title(R.string.title_delete_car)
+                .iconRes(R.drawable.ic_menu_camera)
+                .maxIconSizeRes(R.dimen.md_icon_max_size)
+                .positiveText(R.string.yes)
+                .negativeText(R.string.no)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        deleteCar(car);
+                    }
+                })
+                .show();
     }
 
-    private void showEditDialog() {
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        Bundle args = new Bundle();
-        // TODO: 27.02.2016 put parcelable car in args
-        CarDialog dialog = new CarDialog();
-        dialog.setArguments(args);
-        dialog.show(ft, getString(R.string.edit_car));
-    }
-
-    private void showDeleteDialog() {
-        // TODO: 27.02.2016 are you sure?
-//        deleteCar();
-    }
-
-    private void showMenuDialog() {
+    private void showMenuDialog(final Car car) {
         String[] values = new String[]{getString(R.string.edit), getString(R.string.delete)};
         ArrayAdapter<String> dialogAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, values);
         new MaterialDialog.Builder(getActivity())
@@ -114,10 +111,10 @@ public class CarsFragment extends BaseFragment implements IHasFabFragment {
                     public void onSelection(MaterialDialog materialDialog, View view, int pos, CharSequence charSequence) {
                         switch (pos) {
                             case 0:
-                                showEditDialog();
+                                editCar(car);
                                 break;
                             case 1:
-                                showDeleteDialog();
+                                showDeleteDialog(car);
                                 break;
                         }
                         materialDialog.dismiss();
@@ -129,7 +126,8 @@ public class CarsFragment extends BaseFragment implements IHasFabFragment {
 
     @Override
     public void onFabClicked() {
-        showAddDialog();
+        Intent intent = new Intent(getContext(), AddCarActivity.class);
+        startActivity(intent);
     }
 
     private void deleteCar(Car car) {
@@ -144,19 +142,16 @@ public class CarsFragment extends BaseFragment implements IHasFabFragment {
     }
 
     private void editCar(Car car) {
-        try {
-            CarsRepository repo = new CarsRepository(Application.getContext());
-            repo.save(car);
-        } catch (SQLException e) {
-            // TODO: 02.03.2016
-            e.printStackTrace();
-        }
+        Intent intent = new Intent(getContext(), AddCarActivity.class);
+        intent.putExtra(Constants.EXTRA_CAR_ID, car.getId());
+        startActivity(intent);
     }
 
     private void updateCars() {
         try {
             CarsRepository repo = new CarsRepository(Application.getContext());
             List<Car> cars = repo.queryAll();
+            adapter.clear(); // TODO: 07.03.2016
             adapter.addAll(cars);
         } catch (SQLException e) {
             // TODO: 27.02.2016

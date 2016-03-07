@@ -14,5 +14,25 @@
     <string name="name_hint">Name</string>
     <string name="edit_car">Edit car</string>
     <string name="add_car">Add car</string>
+    <string name="toolbar_title_car_add">New car</string>
+    <string name="toolbar_title_car_edit">Edit car</string>
+    <string name="toolbar_action_save">Save</string>
+    <string name="send_feedback">FeedBack</string>
+    <string name="choose_client">Choose client</string>
+    <string name="car_add_tab_reference_book">Reference book</string>
+    <string name="car_add_tab_car">Car</string>
+    <string name="no_comment">no comment</string>
+    <string name="hint_car_name">Напр. Audi a6 жена</string>
+    <string name="hint_consumable_name">Напр. Топливный фильтр</string>
+    <string name="toolbar_title_consumable_add">New consumable</string>
+    <string name="toolbar_title_consumable_edit">Edit consumable</string>
+    <string name="gearbox">Gearbox type</string>
+    <string name="title_delete_car">Are you sure?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="gearbox_type_mechanic">Mechanic</string>
+    <string name="gearbox_type_automatic">Automatic</string>
+    <string name="gearbox_type_robotic">Robotic</string>
+    <string name="comment_hint">Напр. Служебная машина</string>
 
 </resources>

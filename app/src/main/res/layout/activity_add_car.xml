@@ -1,0 +1,41 @@
+<android.support.design.widget.CoordinatorLayout
+    style="@style/CoordinatorLayout">
+
+    <android.support.design.widget.AppBarLayout
+        style="@style/AppBarLayout">
+
+        <include layout="@layout/toolbar"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        style="@style/LayoutContent">
+
+        <android.support.v4.widget.NestedScrollView
+            style="@style/NestedScrollView">
+
+            <LinearLayout
+                style="@style/LayoutContent">
+
+                <include layout="@layout/title_add_car"/>
+
+                <FrameLayout
+                    style="@style/LayoutContent">
+
+                    <include layout="@layout/content_add_car"/>
+
+                    <View
+                        style="@style/ShadowHorizontal.2"/>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <View
+            style="@style/ShadowHorizontal.2"/>
+
+    </FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>

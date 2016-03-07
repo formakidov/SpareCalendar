@@ -1,14 +1,10 @@
 <resources>
 
-    <!-- Base application theme. -->
-	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="default_selector">@drawable/default_item_selector</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="primary_text_color">@color/primary_text_dark</item>
-        <item name="secondary_text_color">@color/secondary_text_dark</item>
-        <item name="hint_text_color">@color/hint_text_dark</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -20,48 +16,123 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="DrawerLayout">
+        <item name="android:id">@id/drawer_layout</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
 
-	<style name="DrawerLayout">
-		<item name="android:id">@id/drawer_layout</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">match_parent</item>
-		<item name="android:fitsSystemWindows">true</item>
-	</style>
+    <style name="CoordinatorLayout">
+        <item name="android:id">@id/coordinator_layout</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
 
-	<style name="CoordinatorLayout">
-		<item name="android:id">@id/coordinator_layout</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">match_parent</item>
-		<item name="android:fitsSystemWindows">true</item>
-	</style>
+    <style name="AppBarLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="elevation">0dp</item>
+    </style>
 
-	<style name="AppBarLayout">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="elevation">0dp</item>
-	</style>
+    <style name="FloatingActionButton">
+        <item name="android:id">@id/fab</item>
+        <item name="android:src">@drawable/ic_menu_camera</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|right</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="fabSize">normal</item>
+    </style>
 
-	<style name="FloatingActionButton">
-		<item name="android:id">@id/fab</item>
-		<item name="android:src">@drawable/ic_menu_camera</item>
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">bottom|right</item>
-		<item name="android:layout_margin">16dp</item>
-		<item name="fabSize">normal</item>
-	</style>
+    <style name="RecyclerView">
+        <item name="android:id">@id/recycler_view</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 
-	<style name="RecyclerView">
-		<item name="android:id">@id/recycler_view</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-	</style>
+    <style name="LayoutContent">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="layout_behavior">@string/appbar_scrolling_view_behavior</item>
+    </style>
 
-	<style name="LayoutContent">
-		<item name="android:orientation">vertical</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">match_parent</item>
-		<item name="layout_behavior">@string/appbar_scrolling_view_behavior</item>
-	</style>
+    <style name="TabText" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textColor">@color/muted</item>
+    </style>
+
+    <style name="NestedScrollView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="layout_behavior">@string/appbar_scrolling_view_behavior</item>
+    </style>
+
+    <style name="ItemName">
+        <item name="android:id">@id/item_name</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/text_primary</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="ItemName.ContentText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">@null</item>
+    </style>
+
+    <style name="EditTextTitle">
+        <item name="android:textSize">@dimen/text_primary</item>
+        <item name="android:textColor">@color/edit_text_title</item>
+        <item name="android:textColorHint">@color/muted</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_title</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:theme">@style/TitleEditTextTheme</item>
+    </style>
+
+    <style name="ShadowHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/shadow_horizontal</item>
+    </style>
+
+    <style name="ShadowHorizontal.2">
+        <item name="android:layout_height">2dp</item>
+    </style>
+
+    <style name="ShadowHorizontal.4">
+        <item name="android:layout_height">4dp</item>
+    </style>
+
+
+    <style name="Parameter">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ParameterValue">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_secondary</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="ParameterTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_primary</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="Spinner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/height_48</item>
+        <item name="android:theme">@style/TitleSpinnerTheme</item>
+    </style>
+
 
 </resources>

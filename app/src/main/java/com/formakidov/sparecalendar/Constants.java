@@ -13,4 +13,9 @@ public interface Constants {
     int CONSUMABLES_STALE_THRESHOLD = 500;
 
     int NOTIFICATION_ID = 7771;
+    String APP_EMAIL = "formakidov1996@gmail.com"; // TODO: 06.03.2016
+    String FRAGMENTS_TAGS = "fragment_tags";
+    int GEARBOX_TYPE_MECHANIC = 0;
+    int GEARBOX_TYPE_AUTOMATIC = 1;
+    int GEARBOX_TYPE_ROBOTIC = 2;
 }

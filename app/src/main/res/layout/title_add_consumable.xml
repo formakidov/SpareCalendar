@@ -1,0 +1,22 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="68dp"
+    android:paddingStart="68dp"
+    android:paddingRight="12dp"
+    android:paddingEnd="12dp"
+    android:background="@color/colorPrimary">
+
+    <AutoCompleteTextView
+        style="@style/EditTextTitle"
+        android:id="@+id/title_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="3dp"
+        android:inputType="textCapSentences"/>
+
+</LinearLayout>

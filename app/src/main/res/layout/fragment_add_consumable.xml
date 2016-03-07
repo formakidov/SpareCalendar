@@ -1,0 +1,34 @@
+<FrameLayout
+    style="@style/LayoutContent">
+
+    <android.support.v4.widget.NestedScrollView
+        style="@style/NestedScrollView">
+
+        <LinearLayout
+            style="@style/LayoutContent">
+
+            <include
+                layout="@layout/title_add_consumable"/>
+
+            <FrameLayout
+                style="@style/LayoutContent">
+
+                <LinearLayout
+                    style="@style/LayoutContent">
+
+
+                </LinearLayout>
+
+                <View
+                    style="@style/ShadowHorizontal.2"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <View
+        style="@style/ShadowHorizontal.2"/>
+
+</FrameLayout>
